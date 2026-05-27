@@ -29,7 +29,8 @@ BaselineOfPharoLLMBridge >> defineGroups: spec [
 		group: 'default' with: #( 'Core' 'OpenAI' );
 		group: 'Core' with: #( 'PharoLLMBridge-Core' );
 		group: 'Codex' with: #( 'PharoLLMBridge-Codex' );
-		group: 'OpenAI' with: #( 'PharoLLMBridge-OpenAI' )
+		group: 'OpenAI' with: #( 'PharoLLMBridge-OpenAI' );
+		group: 'Ollama' with: #( 'PharoLLMBridge-Ollama' )
 ]
 
 { #category : 'baselines' }
@@ -40,5 +41,7 @@ BaselineOfPharoLLMBridge >> definePackages: spec [
 		package: 'PharoLLMBridge-Codex'
 		with: [ spec requires: #( 'PharoLLMBridge-Core' ) ];
 		package: 'PharoLLMBridge-OpenAI'
+		with: [ spec requires: #( 'PharoLLMBridge-Core' ) ];
+		package: 'PharoLLMBridge-Ollama'
 		with: [ spec requires: #( 'PharoLLMBridge-Core' ) ]
 ]
