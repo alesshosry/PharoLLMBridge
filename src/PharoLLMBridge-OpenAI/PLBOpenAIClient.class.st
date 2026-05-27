@@ -60,8 +60,8 @@ PLBOpenAIClient >> messagesFor: aPLBRequest [
 	| messages systemPrompt |
 	messages := OrderedCollection new.
 	systemPrompt := aPLBRequest metadata
-		                at: #systemPrompt
-		                ifAbsent: [ nil ].
+			                at: #systemPrompt
+			                ifAbsent: [ nil ].
 	systemPrompt ifNotNil: [
 		messages add: (Dictionary new
 				 at: 'role' put: 'system';
