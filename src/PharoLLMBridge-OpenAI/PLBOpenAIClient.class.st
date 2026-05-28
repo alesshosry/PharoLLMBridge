@@ -1,3 +1,27 @@
+"
+`PharoLLMBridge-OpenAI` allows Pharo to send prompts directly to OpenAI models and receive the result through the same request/response API used by the other backends.
+It currently uses OpenAI through its HTTP API. 
+ 
+Default configuration added in `PharoLLMBridge-OpenAI>>initialize:`
+- endpoint: https://api.openai.com/v1/chat/completions
+- model: gpt-4.1-mini
+You can change the model to any other OpenAI model available in your account.
+
+Before using `PharoLLMBridge-OpenAI`, you need:
+- an OpenAI API key
+- the environment variable OPENAI_API_KEY available to Pharo
+
+#### Example of usage:
+
+```
+| prompt request response |
+prompt := 'Return only valid JSON object {""names"":[""alerts""]} and nothing else.'.
+request := PLBRequest new
+	prompt: prompt;
+	expectedFormat: #json;
+	yourself.
+response := PLBOpenAIClient new send: request.```
+"
 Class {
 	#name : 'PLBOpenAIClient',
 	#superclass : 'PLBClient',

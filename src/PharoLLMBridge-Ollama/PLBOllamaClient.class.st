@@ -1,3 +1,36 @@
+"
+`PharoLLMBridge-Ollama` allows Pharo to send prompts to an Ollama server running on the local machine and receive the result through the same request/response API used by the other backends.
+
+It currently uses Ollama through its local HTTP API.
+Default configuration added in `PharoLLMBridge-Ollama>>initialize`:
+- endpoint: http://localhost:11434/api/generate
+- model: qwen3-coder:30b
+You can change the model to any other model available in your local Ollama installation.
+
+Before using PharoLLMBridge-Ollama, you need:
+- Ollama installed on your machine
+- the Ollama server running locally
+- at least one model pulled locally
+Typical shell setup:
+ollama serve
+ollama pull qwen3-coder:30b
+
+#### Example of usage:
+
+``` 
+prompt := 'Return only valid JSON object {""names"":[""alerts""]} and nothing else.'.
+request := PLBRequest new
+	prompt: prompt;
+	expectedFormat: #json;
+	yourself.
+response := PLBOllamaClient new send: request.```
+
+
+
+
+
+
+"
 Class {
 	#name : 'PLBOllamaClient',
 	#superclass : 'PLBClient',
