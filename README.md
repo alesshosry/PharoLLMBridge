@@ -14,6 +14,7 @@ The goal of PharoLLMBridge is to make it easy to:
 ## Current Backends
 - OpenAI
 - Codex
+- Ollama
 
 ## Installation 
 ```smalltalk
@@ -57,6 +58,28 @@ response parsedResult
 This requires:
 - local Codex installed
 - Codex accessible from the configured command path
+
+## Ollama Example
+
+PLBOllamaClient sends prompts through the local Ollama server.
+
+```smalltalk
+request := PLBRequest new
+	prompt: 'Return only valid JSON object {"names":["alerts"]} and nothing else.';
+	expectedFormat: #json;
+	yourself.
+response := PLBOllamaClient new send: request.
+response parsedResult
+```
+
+This requires: 
+- Ollama installed on your machine
+- the Ollama server running locally
+- at least one model pulled locally (mistral, qwen ...)
+
+Typical shell setup:
+- ollama serve
+- ollama pull qwen3-coder:30b
 
 ## Important: Response Format Must Be Specified In The Prompt
 
